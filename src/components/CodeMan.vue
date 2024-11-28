@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import config from '../config'; 
+
 export default {
   props: {
     productId: {
@@ -35,7 +37,7 @@ export default {
     async createCode() {
       this.newCode.id = this.productId;
       try {
-        const response = await fetch('http://localhost:8007/createCode', {
+        const response = await fetch(`${config.API_URL}/createCode`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

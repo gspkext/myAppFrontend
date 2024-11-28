@@ -66,6 +66,7 @@ import ProductForm from './components/ProductForm.vue';
 import CodeMan from './components/CodeMan.vue';
 import QueryCode from './components/QueryCode.vue';
 import ChainMan from './components/ChainMan.vue';
+import config from './config';
 
 export default {
   components: {
@@ -87,7 +88,7 @@ export default {
   methods: {
     async fetchProducts() {
       try {
-        const response = await fetch('http://localhost:8007/queryProducts');
+        const response = await fetch(`${config.API_URL}/queryProducts`);
         const data = await response.json();
         if (data.code === "1") {
           this.products = data.o;

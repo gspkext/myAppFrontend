@@ -49,6 +49,8 @@
 </template>
 
 <script>
+import config from '../config';
+
 export default {
   props: {
     productId: {
@@ -79,7 +81,7 @@ export default {
   methods: {
     async queryCodes() {
       try {
-        const response = await fetch('http://localhost:8007/queryAllCodeByProductId', {
+        const response = await fetch(`${config.API_URL}/queryAllCodeByProductId`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -110,7 +112,7 @@ export default {
     },
     async submitChainData() {
       try {
-        const response = await fetch('http://localhost:8007/toChain', {
+        const response = await fetch(`${config.API_URL}/toChain`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -126,7 +128,7 @@ export default {
     },
     async queryChainData() {
       try {
-        const response = await fetch(`http://localhost:8007/queryCode?code=${this.selectedCode}`);
+        const response = await fetch(`${config.API_URL}/queryCode?code=${this.selectedCode}`);
         const data = await response.json();
         if (data.code === "1") {
           this.chainDataList = data.o.list; // Assuming the response structure

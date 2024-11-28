@@ -56,6 +56,8 @@
 </template>
 
 <script>
+import config from '../config';
+
 export default {
   data() {
     return {
@@ -90,7 +92,7 @@ export default {
   methods: {
     async fetchCode() {
       try {
-        const response = await fetch(`http://localhost:8007/queryCode?code=${this.code}`);
+        const response = await fetch(`${config.API_URL}/queryCode?code=${this.code}`);
         const data = await response.json();
         console.log(data); // 查看返回的数据结构
         
@@ -121,7 +123,7 @@ export default {
     },
     async submitChainData() {
       try {
-        const response = await fetch('http://localhost:8007/toChain', {
+        const response = await fetch(`${config.API_URL}/toChain`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -137,7 +139,7 @@ export default {
     },
     async queryChainData() {
       try {
-        const response = await fetch(`http://localhost:8007/queryCode?code=${this.selectedCode}`);
+        const response = await fetch(`${config.API_URL}/queryCode?code=${this.selectedCode}`);
         const data = await response.json();
         if (data.code === "1") {
           this.chainDataList = data.o.list; // 假设返回的数据结构

@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import config from '../config'; // 导入配置文件
+
 export default {
   data() {
     return {
@@ -31,7 +33,7 @@ export default {
   methods: {
     async addProduct() {
       try {
-        const response = await fetch('http://localhost:8007/product/add', {
+        const response = await fetch(`${config.API_URL}/product/add`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
